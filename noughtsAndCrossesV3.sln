@@ -34,16 +34,16 @@ namespace noughtsAndCrossesV3
             this.AutoSize = true;
 
             //Creating the buttons dynamically
-            for (int Y = 1; Y <= howManyDown; Y++)
+            for (int Y = 1; Y <= howManyDown; ++Y)
             {
-                for (int X = 1; X <= howManyAcross; X++)
+                for (int X = 1; X <= howManyAcross; ++X)
                 {
                     Button button = new Button();
 
                     button.Name = X + "-" + Y;
                     button.Text = "";
                     
-                    button.Font = new Font(button.Font.FontFamily, buttonSize/2);
+                    button.Font = new Font(button.Font.FontFamily, buttonSize / 2);
                     button.Size = new Size(buttonSize, buttonSize);
                     button.Location = new Point(((X - 1) * buttonSize), (howManyDown * buttonSize - (Y) * buttonSize));
 
@@ -52,13 +52,13 @@ namespace noughtsAndCrossesV3
                 }
             }
             //Calculating the ways to win connection horizontally
-            for (int Y = 1; Y <= howManyDown; Y++)
+            for (int Y = 1; Y <= howManyDown; ++Y)
             {
-                for (int startX = 1; startX <= ((howManyAcross + 1) - connectHowMany); startX++)
+                for (int startX = 1; startX <= ((howManyAcross + 1) - connectHowMany); ++startX)
                 {
                     List<string> sublistWin = new List<string>();
 
-                    for (int X = startX; X < (connectHowMany + startX); X++)
+                    for (int X = startX; X < (connectHowMany + startX); ++X)
                     {
                         sublistWin.Add(X + "-" + Y);
                     }
@@ -66,13 +66,13 @@ namespace noughtsAndCrossesV3
                 }
             }
             //Calculating the ways to win connecting vertically
-            for (int X = 1; X <= howManyAcross; X++)
+            for (int X = 1; X <= howManyAcross; ++X)
             {
-                for (int startY = 1; startY <= ((howManyDown + 1) - connectHowMany); startY++)
+                for (int startY = 1; startY <= ((howManyDown + 1) - connectHowMany); ++startY)
                 {
                     List<string> sublistWin = new List<string>();
 
-                    for (int Y = startY; Y < (connectHowMany + startY); Y++)
+                    for (int Y = startY; Y < (connectHowMany + startY); ++Y)
                     {
                         sublistWin.Add(X + "-" + Y);
                     }
@@ -89,7 +89,7 @@ namespace noughtsAndCrossesV3
                     {
                         List<string> sublistWin = new List<string>();
                         int y = Y;
-                        for (int x = X; x <= Math.Max(howManyAcross, howManyDown); ++x)
+                        for (int x = X; x <= connectHowMany + X - 1; ++x)
                         {
                             sublistWin.Add(x + "-" + y);
                             ++y;
@@ -107,7 +107,7 @@ namespace noughtsAndCrossesV3
                     {
                         List<string> sublistWin = new List<string>();
                         int x = X;
-                        for (int y = Y; y <= Math.Max(howManyAcross, howManyDown); ++y)
+                        for (int y = Y; y <= connectHowMany + Y - 1; ++y)
                         {
                             sublistWin.Add(x + "-" + y);
                             --x;
@@ -137,9 +137,9 @@ namespace noughtsAndCrossesV3
         {
             Button btn = (Button)sender;
 
-            for (int Y = 1; Y < howManyDown + 1; Y++)
+            for (int Y = 1; Y < howManyDown + 1; ++Y)
             {
-                for (int X = 1; X < howManyAcross + 1; X++)
+                for (int X = 1; X < howManyAcross + 1; ++X)
                 {
                     if (btn.Name == (X + "-" + Y))
                     {
@@ -156,11 +156,11 @@ namespace noughtsAndCrossesV3
 
                             playerX_claim.Add($"{X}-{Y}");
 
-                            for (int i = 0; i < winConditions.listWin.Count; i++)
+                            for (int i = 0; i < winConditions.listWin.Count; ++i)
                             {
                                 List<string> aCondition = new List<string>();
 
-                                for (int j = 0; j < connectHowMany; j++)
+                                for (int j = 0; j < connectHowMany; ++j)
                                 {
                                     aCondition.Add(winConditions.listWin[i][j]);
                                 }
@@ -184,11 +184,11 @@ namespace noughtsAndCrossesV3
 
                             playerO_claim.Add($"{X}-{Y}");
 
-                            for (int i = 0; i < winConditions.listWin.Count; i++)
+                            for (int i = 0; i < winConditions.listWin.Count; ++i)
                             {
                                 List<string> aCondition = new List<string>();
 
-                                for (int j = 0; j < connectHowMany; j++)
+                                for (int j = 0; j < connectHowMany; ++j)
                                 {
                                     aCondition.Add(winConditions.listWin[i][j]);
                                 }
